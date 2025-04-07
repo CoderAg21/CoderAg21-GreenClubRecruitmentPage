@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* background-color: black; */
+    color: whitesmoke;
+    
+}
+.navbar{
+    background-color: #38385d;
+    height: 55px;
+    background: linear-gradient(45deg, #02070b, #16394c, #101820);
+        width: 100vw;
+}
+.section1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 55px);
+    width: 100vw;
+    gap: 10px;
+background:url(https://usagif.com/wp-content/uploads/gif/outerspace-70.gif);    background-repeat: no-repeat;
+    background-size: cover;
+    flex-wrap: wrap;
+    backdrop-filter: blur(3px);
+}
+.section1 h2{
+    background-image: radial-gradient(circle at top left, #a8ff78, #78ffd6);
+    font-weight: bold;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    box-shadow: 0 0 16px #38385d;
+    border-radius: 10px;
+    padding: 10px;
+}
+.section1 .content{
+    width: 70vw;
+    padding-top: 20px;
+    text-shadow: 0 0 2px #ff1c07;
+    font-size: 1rem;
+    text-align: center;
+}
