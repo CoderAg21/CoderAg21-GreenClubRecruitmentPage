@@ -14,3 +14,9 @@
 .rightContent {
   width: 80%;
 }
+.section2 img{
+  height: 320px;
+}
+.section1 .content {
+  font-size: 3vw;
+}

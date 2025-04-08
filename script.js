@@ -17,14 +17,14 @@ tl.from(".section1 .content", {
 
 gsap.from(".section2", {
   opacity: 0,
-  y: 200,
+  y: 300,
   scrollTrigger: {
     trigger: ".section2",
-    start: "top 60%",
-    end: "top 5%",
-    markers:true,
+    start: "top 70%",
+    end: "top 40%",
+    // markers:true,
     scrub: true,
-    pin: true,
+    // pin: true,
   },
   duration: 1,
 });

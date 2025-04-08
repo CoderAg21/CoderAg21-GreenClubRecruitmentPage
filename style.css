@@ -39,10 +39,10 @@ body {
   padding: 10px;
 }
 .section1 .content {
-  width: 70vw;
+  width: 96vw;
   padding-top: 20px;
   text-shadow: 0 0 2px #ff1c07;
-  font-size: 3vw;
+  font-size: 2vw;
   text-align: center;
 }
 .section2 h4 {
@@ -83,8 +83,8 @@ body {
 }
 .section2 img {
   height: 320px;
-
   aspect-ratio: auto;
+  /* transform: scale(1.2); */
   object-fit: contain;
 }
 
