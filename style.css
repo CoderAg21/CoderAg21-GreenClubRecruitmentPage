@@ -1,45 +1,79 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-body{
-    /* background-color: black; */
-    color: whitesmoke;
-    
+body {
+  background-color: black;
+  color: whitesmoke;
 }
-.navbar{
-    background-color: #38385d;
-    height: 55px;
-    background: linear-gradient(45deg, #02070b, #16394c, #101820);
-        width: 100vw;
+.navbar {
+  background-color: #38385d;
+  height: 55px;
+  background: linear-gradient(45deg, #02070b, #16394c, #101820);
+  width: 100vw;
 }
-.section1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 55px);
-    width: 100vw;
-    gap: 10px;
-background:url(https://usagif.com/wp-content/uploads/gif/outerspace-70.gif);    background-repeat: no-repeat;
-    background-size: cover;
-    flex-wrap: wrap;
-    backdrop-filter: blur(3px);
+.section1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 55px);
+  width: 100vw;
+  gap: 10px;
+  background: url(https://usagif.com/wp-content/uploads/gif/outerspace-70.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-wrap: wrap;
+  backdrop-filter: blur(3px);
 }
-.section1 h2{
-    background-image: radial-gradient(circle at top left, #a8ff78, #78ffd6);
-    font-weight: bold;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 3rem;
-    box-shadow: 0 0 16px #38385d;
-    border-radius: 10px;
-    padding: 10px;
+.section1 h2 {
+  background-image: radial-gradient(circle at top left, #a8ff78, #78ffd6);
+  font-weight: bold;
+  -webkit-background-clip: text;
+  position: relative;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  box-shadow: 0 0 16px #38385d;
+  border-radius: 10px;
+  padding: 10px;
 }
-.section1 .content{
-    width: 70vw;
-    padding-top: 20px;
-    text-shadow: 0 0 2px #ff1c07;
-    font-size: 1rem;
-    text-align: center;
+.section1 .content {
+  width: 70vw;
+  padding-top: 20px;
+  text-shadow: 0 0 2px #ff1c07;
+  font-size: 1rem;
+  text-align: center;
+}
+.section2 {
+  height: 600px;
+  width: 100vw;
+  background-color: #16394c39;
+  background-image: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDZ5dnB0aG94MnNyOXExdDFmOGR1enMya3E4ZGU4endpaGJtZmJoeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UoVkGO5QlaKY/giphy.gif);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.section2 h3 {
+  margin-top: 20px;
+  background: radial-gradient(circle at top left, #ff7e5f, #feb47b);
+  background: linear-gradient(to right, #654ea3, #eaafc8);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  font-size: 2.5rem;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+  accent-color: turquoise;
+  box-sizing: 0 0 0 10px brown;
+  box-shadow: 0 0 12px #ffffeb inset;
+  padding: 10px 40px;
+  border-radius: 15px;
+}
+.section2 img {
+  height: 500px;
+  width: 500px;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
