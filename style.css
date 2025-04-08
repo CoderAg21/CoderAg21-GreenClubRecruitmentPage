@@ -22,6 +22,7 @@ body {
   gap: 10px;
   background: url(https://usagif.com/wp-content/uploads/gif/outerspace-70.gif);
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   flex-wrap: wrap;
   backdrop-filter: blur(3px);
@@ -32,7 +33,7 @@ body {
   -webkit-background-clip: text;
   position: relative;
   -webkit-text-fill-color: transparent;
-  font-size: 3.3vw;
+  font-size: 3.1vw;
   box-shadow: 0 0 16px #38385d;
   border-radius: 10px;
   padding: 10px;
@@ -68,10 +69,10 @@ body {
   margin-top: 20px;
   background: radial-gradient(circle at top left, #ff7e5f, #feb47b);
   transform: rotate(-1deg);
-  background: linear-gradient(to right, #654ea3, #eaafc8);
-  background-clip: border-box;
+  background: linear-gradient(to right, #59ff6b, #eaafc8);
+ 
   -webkit-background-clip: text;
-  font-size: 4.6vw;
+  font-size: 4.2vw;
   -webkit-text-fill-color: transparent;
   font-weight: bolder;
   accent-color: turquoise;
@@ -138,6 +139,7 @@ body {
   width: 47%;
   gap: 20px;
   align-items: center;
+  padding-bottom: 10px;
   font-size: 1.2rem;
   flex-direction: column;
 }

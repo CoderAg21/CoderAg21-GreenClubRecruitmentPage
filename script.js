@@ -21,8 +21,8 @@ gsap.from(".section2", {
   scrollTrigger: {
     trigger: ".section2",
     start: "top 60%",
-    end: "top 20%",
-    // markers:true,
+    end: "top 5%",
+    markers:true,
     scrub: true,
     pin: true,
   },
