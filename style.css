@@ -44,6 +44,12 @@ body {
   font-size: 1rem;
   text-align: center;
 }
+.section2 h4{
+  padding:
+38px;
+  color: #ffb7b7;
+  text-shadow: 0 0 10px antiquewhite;
+}
 .section2 {
   height: 600px;
   width: 100vw;
@@ -59,6 +65,7 @@ body {
 .section2 h3 {
   margin-top: 20px;
   background: radial-gradient(circle at top left, #ff7e5f, #feb47b);
+transform: rotate(-1deg);
   background: linear-gradient(to right, #654ea3, #eaafc8);
   background-clip: border-box;
   -webkit-background-clip: text;
@@ -77,3 +84,109 @@ body {
   aspect-ratio: auto;
   object-fit: contain;
 }
+
+.section3 {
+  /* height: 100vh; */
+  width: 100vw;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://img.freepik.com/premium-photo/black-dark-abstract-background-geometric-shape-line-angle-triangle-stripe-polygon-color-gradient_1155284-1039.jpg?semt=ais_country_boost&w=740);
+  flex-direction: column;
+  gap: 100px;
+  padding-top: 10vh;
+  padding-bottom: 10VH;
+  box-shadow: 0 0 10px aliceblue;
+}
+
+.coreTeam,.webTeam,.videographyTeam,.mediaTeam,.photographyTeam {
+  box-shadow: 0 0 15px rgba(245, 245, 245, 0.509);
+  height: 80vh;
+  backdrop-filter: blur(3px);
+  width: 60vw;
+  background-color: #19445b8e;
+  border-radius: 10px;
+  display: flex;
+  position: sticky;
+  top: 10vh;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.rightContent{
+  height: 50%;
+  border-radius: 10px;
+  width: 47%;
+  box-shadow: 0 0 10px black;
+  background-size: cover;
+  /* background-color: red; */
+  background-position: center;
+}
+
+
+.leftContent{
+  display: flex;
+  justify-content: center;
+  width: 47%;
+  gap: 20px;
+  align-items: center;
+  font-size: 1.2rem;
+  flex-direction: column;
+  
+}
+.leftContent h1{
+  background-size: cover;
+  -webkit-background-clip: text;
+  text-align: center;
+  -webkit-text-fill-color: transparent;
+  background-position: center;
+}
+
+.webTeam .rightContent{
+  background-image: url("./images/webTeam.gif");
+
+}
+.photographyTeam .rightContent{
+  background-image: url("https://i.redd.it/9n6d2qxxbn2d1.gif");
+}
+.videographyTeam .rightContent{
+  background-image: url("https://i.pinimg.com/originals/ff/83/b9/ff83b9c6abe5366bf7d8cc309b53e88d.gif");
+}
+.coreTeam .rightContent{
+  background-image: url("https://www.icegif.com/wp-content/uploads/2022/10/icegif-1012.gif");
+
+}
+.mediaTeam .rightContent{
+  background-image: url("https://cdn.dribbble.com/userupload/19906993/file/original-145ef8617ff6330321c1c1565d7fc587.gif");
+}
+.webTeam h1{
+  background-image: url('https://i.pinimg.com/736x/a0/d8/10/a0d810474c309edd22329b760280a303.jpg');
+}
+.photographyTeam h1{
+  font-size: 2rem;
+  background-image: url('https://media1.giphy.com/media/3o7520ttsoqmj3j8li/200w.gif?cid=6c09b952imyp7do4vsp87pypfllc11us34819k4ud77hc7zq&ep=v1_gifs_search&rid=200w.gif&ct=g');
+}
+.coreTeam h1{
+  background-image: url('https://previews.123rf.com/images/stillfx/stillfx1110/stillfx111000031/10796943-closeup-of-rough-brown-background.jpg');
+
+}
+.mediaTeam h1{
+  background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20231013/pngtree-textured-recycled-paper-a-rough-brown-crumpled-surface-image_13643153.png');
+
+
+}
+.videographyTeam h1{
+  font-size: 2rem;
+    background-image: url('https://img.pikbest.com/wp/202408/crumpled-paper-texture-of-wrinkled-or-in-the-background_9965877.jpg!w700wp');
+
+
+}
+
+.footer{
+  height: 40vh;
+  width: 100vw;
+}
+
+
