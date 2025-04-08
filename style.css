@@ -32,7 +32,7 @@ body {
   -webkit-background-clip: text;
   position: relative;
   -webkit-text-fill-color: transparent;
-  font-size: 3rem;
+  font-size: 3.3vw;
   box-shadow: 0 0 16px #38385d;
   border-radius: 10px;
   padding: 10px;
@@ -41,13 +41,16 @@ body {
   width: 70vw;
   padding-top: 20px;
   text-shadow: 0 0 2px #ff1c07;
-  font-size: 1rem;
+  font-size: 3vw;
   text-align: center;
 }
 .section2 h4 {
   padding: 38px;
   color: #ffb7b7;
   text-shadow: 0 0 10px antiquewhite;
+  font-size: 2.7vw;
+
+  text-align: center;
 }
 .section2 {
   height: 600px;
@@ -61,39 +64,41 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.section2 h3 {
+.section2 h1 {
   margin-top: 20px;
   background: radial-gradient(circle at top left, #ff7e5f, #feb47b);
   transform: rotate(-1deg);
   background: linear-gradient(to right, #654ea3, #eaafc8);
   background-clip: border-box;
   -webkit-background-clip: text;
-  font-size: 2.5rem;
+  font-size: 4.6vw;
   -webkit-text-fill-color: transparent;
   font-weight: bolder;
   accent-color: turquoise;
   box-sizing: 0 0 0 10px brown;
   box-shadow: 0 0 12px #ffffeb inset;
-  padding: 10px 40px;
+  padding: 10px 23px;
   border-radius: 15px;
 }
 .section2 img {
-  height: 500px;
-  width: 500px;
+  height: 320px;
+
   aspect-ratio: auto;
   object-fit: contain;
 }
 
 .section3 {
-  /* height: 100vh; */
   width: 100vw;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
-  background-image: url(https://img.freepik.com/premium-photo/black-dark-abstract-background-geometric-shape-line-angle-triangle-stripe-polygon-color-gradient_1155284-1039.jpg?semt=ais_country_boost&w=740);
+  background-image: url("https://images.unsplash.com/photo-1524334228333-0f6db392f8a1?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YmxhY2slMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww");
   flex-direction: column;
   gap: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding-top: 10vh;
   padding-bottom: 10vh;
   /* box-shadow: 0 0 10px aliceblue; */
@@ -123,7 +128,7 @@ body {
   width: 47%;
   box-shadow: 0 0 10px black;
   background-size: cover;
-  /* background-color: red; */
+  margin: 10px;
   background-position: center;
 }
 
@@ -154,6 +159,9 @@ body {
   background-image: url("https://i.pinimg.com/originals/ff/83/b9/ff83b9c6abe5366bf7d8cc309b53e88d.gif");
 }
 .coreTeam .rightContent {
+  background-color: rgba(255, 255, 255, 0.098);
+  background-size: 208px 149px;
+  background-repeat: no-repeat;
   background-image: url("https://www.icegif.com/wp-content/uploads/2022/10/icegif-1012.gif");
 }
 .mediaTeam .rightContent {

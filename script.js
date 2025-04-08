@@ -28,16 +28,16 @@ gsap.from(".section2", {
   },
   duration: 1,
 });
-for (let index = 0; index < section3Ele.length; index++) {
+for (let index = 0; index < section3Ele.length - 1; index++) {
   const element = section3Ele[index];
   gsap.to(`.${element.className}`, {
     opacity: 0,
     transform: "Scale(.7)",
     scrollTrigger: {
       trigger: `.${element.className}`,
-      start: "top 5%",
-      end: "bottom 15%",
-      // markers:true,
+      start: "top 10%",
+      end: "bottom 5%",
+      //   markers:true,
       // pin:true,
       scrub: true,
       staggered: 1,

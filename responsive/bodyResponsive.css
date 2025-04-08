@@ -1,0 +1,16 @@
+.coreTeam,
+.webTeam,
+.videographyTeam,
+.mediaTeam,
+.photographyTeam {
+  flex-direction: column-reverse;
+  width: 90%;
+}
+.leftContent {
+  width: 90%;
+  text-align: center;
+  gap: 0;
+}
+.rightContent {
+  width: 80%;
+}
