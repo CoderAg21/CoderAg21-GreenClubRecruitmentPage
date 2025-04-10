@@ -20,7 +20,7 @@ gsap.from(".section2", {
   y: 300,
   scrollTrigger: {
     trigger: ".section2",
-    start: "top 70%",
+    start: "top 80%",
     end: "top 40%",
     // markers:true,
     scrub: true,
@@ -28,6 +28,14 @@ gsap.from(".section2", {
   },
   duration: 1,
 });
+
+gsap.to('.section2 img',{
+  y:-10,
+  repeat:-1,
+  duration:1,
+  ease: "power1.inOut",
+  yoyo: true
+})
 for (let index = 0; index < section3Ele.length - 1; index++) {
   const element = section3Ele[index];
   gsap.to(`.${element.className}`, {
