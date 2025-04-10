@@ -15,10 +15,20 @@ body {
   background: linear-gradient(45deg, #02070b, #16394c, #101820);
   width: 100vw;
 }
+.banner img{
+  height: 300px;
+width: fit-content;
+  object-fit: cover;
+  margin-top: 20px;
+  border-radius:
+22px;
+  object-position: center;
+  box-shadow: 0 0 18px silver;
+}
 .section1 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   height: calc(100vh - 55px);
   width: 100vw;
@@ -28,6 +38,7 @@ body {
   background-position: center;
   background-size: cover;
   flex-wrap: wrap;
+  gap: 15px;
   backdrop-filter: blur(3px);
 }
 .section1 h2 {
@@ -43,14 +54,14 @@ body {
 }
 .section1 .content {
   width: 96vw;
-  padding-top: 20px;
+  padding-top: 2px;
   text-shadow: 0 0 2px #ff1c07;
   font-size: 2vw;
   text-align: center;
 }
 .section2 h4 {
   padding: 38px;
-  color: #ffb7b7;
+  color: #ffdfb7;
   text-shadow: 0 0 10px antiquewhite;
   font-size: 2vw;
 
@@ -71,9 +82,9 @@ body {
 }
 .section2 h1 {
   margin-top: 20px;
-  background: radial-gradient(circle at top left, #ff7e5f, #feb47b);
   transform: rotate(-1deg);
-  background: linear-gradient(to right, #59ff6b, #eaafc8);
+  /* background: linear-gradient(to right, #59ff6b, #eaafc8); */
+  background: linear-gradient(to right, #fcb419, #cb7a9c);
  
   -webkit-background-clip: text;
   font-size: 4.2vw;
@@ -86,7 +97,7 @@ body {
   border-radius: 15px;
 }
 .section2 img {
-  height: 320px;
+  height: 270px;
   aspect-ratio: auto;
   /* transform: scale(1.2); */
   object-fit: contain;
