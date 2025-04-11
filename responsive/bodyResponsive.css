@@ -11,7 +11,7 @@
   text-align: center;
   gap: 0;
 }
-.section1 h2{
+.section1 h2 {
   font-size: 6vw;
   text-align: center;
 }
@@ -19,13 +19,115 @@
   width: 80%;
 }
 
-.section2 h4{
+.section2 h4 {
   font-size: 2.6vw;
 }
 .section1 .content {
   font-size: 3vw;
 }
 
-.banner img{
+.banner img {
   width: 90vw;
+}
+@media screen and (max-width: 770px) {
+  .section3 {
+    width: 90%;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .split-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .content-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefit-item {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .split-container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    padding: 13px;
+  }
+
+  .image-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .content-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 0 1rem;
+  }
+
+  .benefits {
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .benefit-item {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    padding: 0%;
+    width: 100%;
+    margin-bottom: 12px;
+  }
 }

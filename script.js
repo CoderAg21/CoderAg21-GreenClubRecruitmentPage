@@ -52,3 +52,22 @@ for (let index = 0; index < section3Ele.length - 1; index++) {
     },
   });
 }
+let section3Children = document.querySelectorAll(".section3 > *");
+
+section3Children.forEach((element) => {
+  if (
+    !element.classList.contains("split-container") &&
+    !element.classList.contains("timeline-wrapper")
+  ) {
+    gsap.to(element, {
+      opacity: 0,
+      scale: 0.7,
+      scrollTrigger: {
+        trigger: element,
+        start: "top 10%",
+        end: "bottom 5%",
+        scrub: true,
+      },
+    });
+  }
+});
