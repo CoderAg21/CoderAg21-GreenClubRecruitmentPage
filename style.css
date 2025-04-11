@@ -201,6 +201,194 @@ width: fit-content;
   font-size: 2rem;
   background-image: url("https://img.pikbest.com/wp/202408/crumpled-paper-texture-of-wrinkled-or-in-the-background_9965877.jpg!w700wp");
 }
+.split-container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background image: url("https://usagif.com/wp-content/uploads/gif/outerspace-70.gif");
+}
+
+.image-section {
+  flex: 1;
+  min-width: 200px;
+  max-width:50%;
+  overflow: hidden;
+}
+
+.image-section img {
+  width: 95%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  
+}
+
+/* Text styling */
+.content-section {
+  flex: 1;
+  max-width: 55%;
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+.content-section h2 {
+  font-size: 2rem;
+  color: #81c784;
+  margin-bottom: 1rem;
+}
+
+.green-text {
+  color: #66bb6a;
+}
+
+.highlight {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.content-section p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/*.benefit-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}*/
+.benefit-item {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+.benefit-item:hover {
+  transform: scale(1.05);
+}
+
+.benefit-item .emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.benefit-item .emoji img {
+  width: 4rem;      /* You can adjust this */
+  height: 4rem;     /* Keep it square or use auto */
+  object-fit: cover;
+  border-radius: 50%; /* Optional: make it round */
+  margin-right: 12px;
+  filter: blur(0.5px); /* Slight blur */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Soft white glow */
+  border-radius: 50%; /* if you want circular avatars */
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-item .emoji img:hover {
+  filter: blur(0.5px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+
+.benefit-item h3 {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.benefit-item p {
+  margin: 0.3rem 0 0;
+  color: #bbbbbb;
+}
+/* Main wrapper styling */
+.timeline-wrapper {
+  
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+/* Heading */
+.timeline-wrapper .title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff4d4d;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Timeline steps container */
+.timeline {
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Each step */
+.step {
+  background: linear-gradient(135deg, #2a2a3b, #3b3b55);
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  flex: 1 1 220px;
+  min-width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 255, 0, 0.1);
+}
+
+/* Number circle */
+.circle {
+  background-color: #ff4d4d;
+  color: white;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Center horizontally */
+  margin-bottom: 1rem; 
+}
+
+/* Step headings and text */
+.step h3 {
+  text-align: center;
+  margin: 0.5rem 0;
+  color: #ffffff;
+}
+
+.step p {
+  text-align: center;
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 
 .footer {
   height: 40vh;
