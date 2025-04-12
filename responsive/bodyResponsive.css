@@ -30,11 +30,7 @@
   width: 90vw;
 }
 @media screen and (max-width: 770px) {
-  .section3 {
-    width: 90%;
-    flex-direction: column;
-    padding: 20px;
-  }
+
 
   .split-container {
     width: 90%;
