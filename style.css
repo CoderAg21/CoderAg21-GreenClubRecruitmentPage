@@ -6,7 +6,6 @@ html{
   scroll-behavior: smooth;
 }
 body {
-  overflow-x: hidden;
   background-color: black;
   color: whitesmoke;
 }
@@ -213,18 +212,15 @@ width: fit-content;
 
 .image-section {
   flex: 1;
-  border-radius: 10px;
-  overflow -x: hidden;
-  padding: 7px ;
+  
+  overflow: hidden;
 }
 
 .image-section img {
   width: 95%;
-  height: auto;
+  height:100%;
   object-fit: cover;
   object-position: center;
-  display: block;
-  padding: 0.5rem;;
   
 }
 
@@ -235,17 +231,8 @@ width: fit-content;
   background: linear-gradient(90deg, #010a01, #012f01, #034d03, #012f01, #010a01);
   background-color: #1c1c1c;
   color: #f5f5f5;
-  background: radial-gradient(circle at top left, #316333, #1b1b1b);
-  transition: background 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  padding: 6rem;
+  padding: 3rem;
   box-sizing: border-box;
-}
-.content-section:hover {
-  background: radial-gradient(circle at bottom right, #214a23, #1c1c1c);
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 .content-section h2 {
@@ -326,22 +313,18 @@ width: fit-content;
   color: #bbbbbb;
 }
 /* Main wrapper styling */
-/*.timeline-wrapper {
-  background: radial-gradient(circle at center, #1f1f2b, #121212);
+.timeline-wrapper {
+  
+  background-color: #1a1a1a;
   color: #f0f0f0;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
   max-width: 75vw;
   margin: 2rem auto;
-  box-shadow: 0 8px 20px rgba(255, 175, 189, 0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.timeline-wrapper:hover {
-  transform: scale(1.01);
-  box-shadow: 0 0 30px rgba(0, 255, 128, 0.15);
 }
 
+/* Heading */
 .timeline-wrapper .title {
   text-align: center;
   font-size: 2rem;
@@ -349,54 +332,23 @@ width: fit-content;
   color: #fdcdcd;
   margin-bottom: 2.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
 
-
+/* Timeline steps container */
 .timeline {
-  width: 100%;
-  background: radial-gradient(circle at center, #1e1e2f, #0d0d1a);
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1.5rem;
 }
-*/
-.timeline-wrapper {
-  width: 100%;
-  background-color: #1a1a1a;
-  color: #f0f0f0;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.timeline-wrapper .title {
-  width: 100%;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ff4d4d;
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-.timeline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* center the steps */
-  gap: 1.5rem;
-  width: 90%;
-}
-
 
 /* Each step */
 .step {
-  background: radial-gradient(circle at top, #3b3b5c, #2a2a3b);
+  background: linear-gradient(135deg, #2a2a3b, #3b3b55);
   background-color: #2a2a2a;
   border-radius: 10px;
   display: flex;
@@ -404,25 +356,17 @@ width: fit-content;
   align-items: center;
   justify-content: center;
   flex: 1 1 220px;
-  min-width: 350px;
-  transition: 
-    transform 0.4s ease-in-out,
-    box-shadow 0.4s ease-in-out,
-    background 0.4s ease-in-out;
-  will-change: transform;
+  min-width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .step:hover {
-  transform: scale(1.05) translateY(-8px) rotateZ(-1deg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  background: radial-gradient(circle at bottom, #4a4a7a, #1f1f33);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 255, 0, 0.1);
 }
-.step:hover .step-number {
-  box-shadow: 0 0 20px rgba(255, 77, 77, 0.7);
-}
+
 /* Number circle */
 .circle {
-  background: rgba(255, 255, 255, 0.1);
   background-color: #ff4d4d;
   color: white;
   font-weight: bold;
@@ -434,20 +378,16 @@ width: fit-content;
   align-items: center;
   margin: 0 auto; /* Center horizontally */
   margin-bottom: 1rem; 
-  backdrop-filter: blur(6px); /* blur behind the element */
-  -webkit-backdrop-filter: blur(6px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* soft border */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* soft shadow */
 }
 
 /* Step headings and text */
 .step h3 {
   text-align: center;
+  margin: 0.5rem 0;
   color: #ffffff;
 }
 
 .step p {
-  width: auto;
   text-align: center;
   color: #ccc;
   font-size: 0.95rem;
