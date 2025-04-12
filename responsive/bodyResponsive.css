@@ -52,7 +52,8 @@
   }
 
   .image-section img {
-    width: auto;
+    min-width: 400px;
+    
     align-items: center;
     justify-content: space-between;
     height: auto;
@@ -143,13 +144,19 @@
     box-sizing: border-box;
   }
 
-  .timeline {
+  .timeline{
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline-wrapper {
     width: auto;
     flex-direction: column;
     align-items: center;
   }
 
   .step {
+    align-items: center;
     margin-bottom: 12px;
   }
 }

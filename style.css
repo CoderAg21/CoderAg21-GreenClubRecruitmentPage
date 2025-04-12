@@ -323,7 +323,7 @@ width: fit-content;
   color: #bbbbbb;
 }
 /* Main wrapper styling */
-.timeline-wrapper {
+/*.timeline-wrapper {
   background: radial-gradient(circle at center, #1f1f2b, #121212);
   color: #f0f0f0;
   padding: 2rem;
@@ -338,7 +338,7 @@ width: fit-content;
   transform: scale(1.01);
   box-shadow: 0 0 30px rgba(0, 255, 128, 0.15);
 }
-/* Heading */
+
 .timeline-wrapper .title {
   text-align: center;
   font-size: 2rem;
@@ -346,19 +346,50 @@ width: fit-content;
   color: #ff4d4d;
   margin-bottom: 2.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Timeline steps container */
+
 .timeline {
+  width: 100%;
   background: radial-gradient(circle at center, #1e1e2f, #0d0d1a);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1.5rem;
 }
+*/
+.timeline-wrapper {
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeline-wrapper .title {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff4d4d;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.timeline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center the steps */
+  gap: 1.5rem;
+  width: 90%;
+}
+
 
 /* Each step */
 .step {
@@ -370,7 +401,7 @@ width: fit-content;
   align-items: center;
   justify-content: center;
   flex: 1 1 220px;
-  min-width: 320px;
+  min-width: 350px;
   transition: 
     transform 0.4s ease-in-out,
     box-shadow 0.4s ease-in-out,
