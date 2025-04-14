@@ -473,20 +473,28 @@ width: fit-content;
 .section-mid-part-2{
   height: 150vh;
   width: 100vw;
-  /* background: linear-gradient(to right, rgb(63, 196, 63),rgb(8, 97, 8)); */
-  background: linear-gradient(to right, rgb(19, 18, 18),rgb(2, 54, 2));
+  /* background: linear-gradient(to right, rgb(19, 18, 18),rgb(2, 54, 2)); */
   /* background-color: rgb(36, 35, 35); */
+  background: linear-gradient(to right, rgb(19, 18, 18),#040c30);
+  /* background: url(https://images.unsplash.com/photo-1634289205305-2971478cc3c8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); */
   /* padding: 1.5vh 4vw; */
 }
 
 .section-mid-part-2 h2{
   font-size: 3.8vw;
   font-weight: bolder;
-  color: rgb(240, 91, 5);
+  /* color: rgb(240, 91, 5); */
+  background-image: url(https://images.unsplash.com/photo-1628882860274-0b9a99911691?q=80&w=1499&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-position: bottom;
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   text-align: left;
   margin-bottom: 4vh;
   margin-left: 2vw;
+  padding-top: 2vh;
 }
 .container-box{
   display: flex;
@@ -502,7 +510,9 @@ width: fit-content;
   width: 90vw;
   height: 30vh;
   /* background-color: #292929; */
-  background: linear-gradient(to right, rgb(19, 18, 18),rgb(2, 54, 2));
+  /* background: linear-gradient(to right, rgb(19, 18, 18),rgb(2, 54, 2)); */
+  /* background: linear-gradient(to right, rgb(19, 18, 18),#040c30); */
+  background: transparent;
   border-radius: 10px;
   padding: 2vh 2vw;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
@@ -511,6 +521,11 @@ width: fit-content;
   align-items: center;
   justify-content: flex-start;
 }
+/* .midContainer:hover{
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  background: linear-gradient(to right top, rgb(14, 13, 13),#010b35);
+} */
 .imgContainer{
   width: 40%;
   height: 100%;
@@ -545,6 +560,7 @@ width: fit-content;
 }
 .contentBox h4{
   font-size: 1.5vw;
+  font-weight: 500;
   color: rgb(255, 159, 15);
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   margin-top: 1vh;
