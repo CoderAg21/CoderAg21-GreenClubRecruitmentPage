@@ -9,12 +9,6 @@ body {
   background-color: black;
   color: whitesmoke;
 }
-.navbar {
-  background-color: #38385d;
-  height: 55px;
-  background: linear-gradient(45deg, #02070b, #16394c, #101820);
-  width: 100vw;
-}
 .banner img{
   height: 300px;
 width: fit-content;

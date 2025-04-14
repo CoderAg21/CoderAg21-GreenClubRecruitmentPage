@@ -72,7 +72,54 @@
   }
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 10px 30px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: black;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #00ff7f;
+}
+
 @media screen and (max-width: 412px) {
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    padding: 5px 15px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: black;
+  }
+
   .split-container {
     width: 80vw;
     display: flex;
