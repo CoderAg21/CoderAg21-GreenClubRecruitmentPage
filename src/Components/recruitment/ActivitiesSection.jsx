@@ -69,7 +69,7 @@ export default function ActivitiesSection() {
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
             At Green Club, we believe in sustainability, creativity, and personal growth. 
-            We're not just a club; we're a movement.
+            We are not just a club; we are a movement.
           </p>
         </motion.div>
 
@@ -81,7 +81,7 @@ export default function ActivitiesSection() {
           viewport={{ once: true, margin: '-100px' }}
           className="grid md:grid-cols-3 gap-8"
         >
-          {activities.map((activity, index) => (
+          {activities.map((activity) => (
             <motion.div
               key={activity.title}
               variants={itemVariants}
