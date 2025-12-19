@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { Input } from '@/components/ui/input';
@@ -88,7 +89,7 @@ export default function RecruitmentForm() {
             </motion.div>
             <h2 className="text-3xl font-bold text-white mb-4">Application Submitted! 🎉</h2>
             <p className="text-gray-300 text-lg">
-              Thank you for applying to Green Club MNNIT. We'll review your application and get back to you soon!
+              Thank you for applying to Green Club MNNIT. We will review your application and get back to you soon!
             </p>
           </motion.div>
         </div>
