@@ -95,7 +95,7 @@ export default function BenefitsSection() {
               viewport={{ once: true }}
               transition={{ type: 'spring', bounce: 0.5 }}
             >
-              🌱 Why Join{' '}
+               Why Join{' '}
               <span className="text-lime-400">Green Club</span>?
             </motion.h2>
             <p className="text-gray-400 text-xl mb-12">

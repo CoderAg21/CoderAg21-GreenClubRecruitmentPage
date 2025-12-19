@@ -4,7 +4,7 @@ import ActivitiesSection from "../Components/ActivitiesSection";
 import TeamsSection from "../Components/TeamsSection";
 import RecruitmentForm from "../Components/RecruitmentForm";
 import Footer from "../Components/Footer";
-import BenefitsSection from "../Components/BenifitsSection";
+import BenefitsSection from "../Components/BenefitsSection";
 export default function Recruitment() {
   const scrollToForm = () => {
     const formElement = document.getElementById("form");
@@ -20,7 +20,7 @@ export default function Recruitment() {
       <div id="about">
         <ActivitiesSection />
       </div>
-      <div id="benifits">
+      <div id="benefits">
         <BenefitsSection />
       </div>
       <div id="teams">

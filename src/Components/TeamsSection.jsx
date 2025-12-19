@@ -41,7 +41,7 @@ export default function TeamsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, type: 'spring', bounce: 0.5 }}
           >
-            👥 Our <span className="text-lime-400">TEAMS</span>
+             Our <span className="text-lime-400">TEAMS</span>
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-400 max-w-2xl mx-auto"
