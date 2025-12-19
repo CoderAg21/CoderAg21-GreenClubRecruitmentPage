@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Users, Code, Camera, Palette, Video, Megaphone } from 'lucide-react';
+import {  Code, Camera, Megaphone } from 'lucide-react';
 
 const teams = [
-  { icon: Users, name: 'Core Team', tagline: 'The heart and head of the Green Club', color: 'from-amber-500 to-orange-500' },
+//   { icon: Users, name: 'Core Team', tagline: 'The heart and head of the Green Club', color: 'from-amber-500 to-orange-500' },
   { icon: Code, name: 'Web Team', tagline: 'Building digital roots', color: 'from-blue-500 to-cyan-500' },
   { icon: Camera, name: 'Media Team', tagline: 'Voicing the green message', color: 'from-purple-500 to-pink-500' },
-  { icon: Palette, name: 'Design Team', tagline: 'Creativity meets cause', color: 'from-rose-500 to-red-500' },
-  { icon: Video, name: 'Videography Team', tagline: 'Capturing change', color: 'from-violet-500 to-purple-500' },
+//   { icon: Palette, name: 'Design Team', tagline: 'Creativity meets cause', color: 'from-rose-500 to-red-500' },
+//   { icon: Video, name: 'Videography Team', tagline: 'Capturing change', color: 'from-violet-500 to-purple-500' },
   { icon: Megaphone, name: 'Marketing Team', tagline: 'Spreading the word', color: 'from-lime-500 to-green-500' },
 ];
 
