@@ -1,5 +1,5 @@
+import Recruitment from "./Pages/Recruitment";
 function App() {
-  return <div className="clockUi">
-  </div>
+  return <Recruitment />;
 }
 export default App;
