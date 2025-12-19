@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+// import { base44 } from '@/api/base44Client';
 import { Send, Loader2, CheckCircle2, Leaf, Sparkles, Zap } from 'lucide-react';
 
 const branches = [
@@ -25,7 +25,7 @@ export default function RecruitmentForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await base44.entities.Recruitment.create({ ...formData, status: 'pending' });
+    // await base44.entities.Recruitment.create({ ...formData, status: 'pending' });
     setIsSubmitting(false);
     setIsSubmitted(true);
   };

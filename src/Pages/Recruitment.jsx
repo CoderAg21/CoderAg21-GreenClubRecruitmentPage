@@ -1,4 +1,5 @@
 
+
 import Navbar from '../Components/Navbar';
 import HeroSection from '../Components/HeroSection';
 import ActivitiesSection from '../Components/ActivitiesSection';

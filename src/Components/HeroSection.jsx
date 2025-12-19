@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, Leaf, Sparkles, Zap } from 'lucide-react';
 
-export default function HeroSection({ onScrollToForm }) {
+export default function HeroSection() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -231,7 +231,7 @@ export default function HeroSection({ onScrollToForm }) {
             boxShadow: '0 0 50px rgba(132, 204, 22, 0.8)',
           }}
           whileTap={{ scale: 0.9 }}
-          onClick={onScrollToForm}
+        //   onClick={onScrollToForm}
           className="group relative px-10 py-5 bg-gradient-to-r from-lime-400 via-lime-500 to-emerald-500 rounded-full text-black font-black text-xl overflow-hidden shadow-2xl shadow-lime-500/50"
         >
           <motion.div
