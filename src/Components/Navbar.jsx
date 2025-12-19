@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Leaf, Menu, X } from 'lucide-react';
+import {  Menu, X } from 'lucide-react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -7,7 +7,6 @@ const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Teams', href: '#teams' },
   { label: 'Benefits', href: '#benefits' },
-  { label: 'Apply', href: '#form' },
 ];
 
 export default function Navbar() {
@@ -50,13 +49,13 @@ export default function Navbar() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <motion.div 
-              className="p-2 bg-gradient-to-br from-lime-400 to-emerald-500 rounded-xl relative"
+              className="p-1 bg-gradient-to-br from-lime-400 to-emerald-500 rounded-xl relative"
               animate={{ 
                 boxShadow: ['0 0 20px rgba(132, 204, 22, 0.3)', '0 0 40px rgba(132, 204, 22, 0.6)', '0 0 20px rgba(132, 204, 22, 0.3)']
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Leaf className="w-5 h-5 text-white" />
+              <img src="https://green-club-mnnit.vercel.app/_next/image?url=%2FImages%2Flogo.webp&w=96&q=75"className='h-9 w-9' alt="" />
             </motion.div>
             <span className="text-xl font-bold bg-gradient-to-r from-lime-400 to-emerald-400 bg-clip-text text-transparent">
               Green Club
@@ -90,7 +89,7 @@ export default function Navbar() {
               transition={{ delay: 0.6, type: 'spring', bounce: 0.5 }}
               whileHover={{ scale: 1.1, boxShadow: '0 0 30px rgba(132, 204, 22, 0.5)' }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-lime-400 via-lime-500 to-emerald-500 rounded-full text-black font-bold shadow-lg shadow-lime-500/30 relative overflow-hidden group"
+              className="px-6 py-1.5 bg-gradient-to-r from-lime-400 via-lime-500 to-emerald-500 rounded-full text-black font-bold shadow-lg shadow-lime-500/30 relative overflow-hidden group"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-lime-400"
@@ -98,7 +97,7 @@ export default function Navbar() {
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <span className="relative z-10">Join Now</span>
+              <span className="relative z-10">Apply</span>
             </motion.button>
           </div>
 
