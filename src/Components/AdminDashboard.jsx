@@ -27,10 +27,10 @@ export default function AdminDashboard() {
     if (!token) return navigate('/admin/login');
 
     try {
-      const resCand = await fetch('http://localhost:5000/api/admin/candidates', {
+      const resCand = await fetch('https://coderag21-greenclubrecruitmentpage.onrender.com/api/admin/candidates', {
         headers: { 'Authorization': token }
       });
-      const resStats = await fetch('http://localhost:5000/api/admin/stats', {
+      const resStats = await fetch('https://coderag21-greenclubrecruitmentpage.onrender.com/api/admin/stats', {
         headers: { 'Authorization': token }
       });
 
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
     if(!window.confirm("Are you sure you want to delete this candidate?")) return;
     
     const token = localStorage.getItem('adminToken');
-    await fetch(`http://localhost:5000/api/admin/candidate/${id}`, {
+    await fetch(`https://coderag21-greenclubrecruitmentpage.onrender.com/api/admin/candidate/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': token }
     });
@@ -86,7 +86,7 @@ export default function AdminDashboard() {
     const newStatus = currentStatus === 'reviewed' ? 'pending' : 'reviewed';
     const token = localStorage.getItem('adminToken');
     
-    await fetch(`http://localhost:5000/api/admin/candidate/${id}/status`, {
+    await fetch(`https://coderag21-greenclubrecruitmentpage.onrender.com/api/admin/candidate/${id}/status`, {
       method: 'PATCH',
       headers: { 
         'Content-Type': 'application/json',
