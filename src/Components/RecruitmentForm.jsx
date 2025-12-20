@@ -230,8 +230,8 @@ export default function RecruitmentForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                   <InputGroup label="Full Name" value={formData.fullName} onChange={v => handleChange('fullName', v)} placeholder="Ex: Alex Carter" icon={<User className="w-4 h-4" />}isRequired />
-                  <InputGroup label="Registration ID" value={formData.registrationNumber} onChange={v => handleChange('registrationNumber', v)} placeholder="Ex: 2023BCSE001" icon={<GraduationCap className="w-4 h-4" />} isRequired/>
-                  <InputGroup label="College Email" value={formData.collegeEmail} onChange={v => handleChange('collegeEmail', v)} type="email" placeholder="alex@university.edu" icon={<Send className="w-4 h-4" />} isRequired/>
+                  <InputGroup label="Registration ID" value={formData.registrationNumber} onChange={v => handleChange('registrationNumber', v)} placeholder="Ex: 20240001" icon={<GraduationCap className="w-4 h-4" />} isRequired/>
+                  <InputGroup label="College Email" value={formData.collegeEmail} onChange={v => handleChange('collegeEmail', v)} type="email" placeholder="alex@mnnit.ac.in" icon={<Send className="w-4 h-4" />} isRequired/>
                   <InputGroup label="Mobile Contact" value={formData.mobileNumber} onChange={v => handleChange('mobileNumber', v)} type="tel" placeholder="+91 98765 43210" icon={<User className="w-4 h-4" />}isRequired />
                 </div>
               </motion.div>
