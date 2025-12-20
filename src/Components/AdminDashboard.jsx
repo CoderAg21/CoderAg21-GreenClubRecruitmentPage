@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LogOut, Search, Filter, Trash2, 
   CheckCircle, X, MessageCircle, 
-  User, BookOpen, Target, Clock, Check, Loader2 
+  User, BookOpen, Target, Clock, Check, Loader2, PieChart
 } from 'lucide-react';
 import PropTypes from 'prop-types';
 
@@ -13,14 +13,32 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState({ total: 0, reviewed: 0, pending: 0 });
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAnalytics, setShowAnalytics] = useState(false); // Toggle for stats
   
+  // Filters
   const [filterDept, setFilterDept] = useState('All');
   const [filterRole, setFilterRole] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   
   const navigate = useNavigate();
 
-  // --- FETCH DATA ---
+  // --- CALCULATION LOGIC FOR DISTRIBUTION ---
+  const distributions = useMemo(() => {
+    const deptCounts = {};
+    const roleCounts = {};
+
+    candidates.forEach(c => {
+        // Count Departments
+        deptCounts[c.department] = (deptCounts[c.department] || 0) + 1;
+        // Count Roles
+        roleCounts[c.role] = (roleCounts[c.role] || 0) + 1;
+    });
+
+    return { deptCounts, roleCounts };
+  }, [candidates]);
+  // ------------------------------------------
+
+  //  FETCH DATA 
   const fetchData = async () => {
     const token = localStorage.getItem('adminToken');
     if (!token) return navigate('/admin/login');
@@ -45,15 +63,12 @@ export default function AdminDashboard() {
       setCandidates(dataCand);
       setStats(dataStats);
       
-      // --- BUG FIX STARTS HERE ---
-      // We use the 'prev' argument to check the REAL-TIME state.
-      // If 'prev' is null (user closed modal), we return null (keep it closed).
+      // Fix Race Condition on Modal
       setSelectedCandidate(prev => {
         if (!prev) return null; 
         const updatedSelected = dataCand.find(c => c._id === prev._id);
         return updatedSelected || prev;
       });
-      // --- BUG FIX ENDS HERE ---
 
     } catch (err) {
       console.error("Fetch error:", err);
@@ -66,9 +81,9 @@ export default function AdminDashboard() {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, [navigate]); // Removed selectedCandidate dependency to prevent double-firing
+  }, [navigate]);
 
-  // --- ACTIONS ---
+  //  ACTIONS 
   const handleDelete = async (e, id) => {
     e.stopPropagation(); 
     if(!window.confirm("Are you sure you want to delete this candidate?")) return;
@@ -79,7 +94,6 @@ export default function AdminDashboard() {
       headers: { 'Authorization': token }
     });
     
-    // Use functional update for safety here too
     setSelectedCandidate(prev => (prev?._id === id ? null : prev));
     fetchData();
   };
@@ -137,7 +151,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-[#050505] p-4 md:p-6 font-sans text-gray-200 relative">
       
       {/* HEADER */}
-      <header className="max-w-7xl mx-auto mb-6 md:mb-8 flex flex-col md:flex-row justify-between items-center gap-6 bg-[#0f0f0f] p-6 rounded-3xl border border-white/5 shadow-xl">
+      <header className="max-w-7xl mx-auto mb-6 flex flex-col md:flex-row justify-between items-center gap-6 bg-[#0f0f0f] p-6 rounded-3xl border border-white/5 shadow-xl">
         <div className="text-center md:text-left">
           <h1 className="text-2xl font-black text-white tracking-tight">Admin <span className="text-lime-500">Dashboard</span></h1>
           <p className="text-gray-500 text-xs mt-1 flex items-center justify-center md:justify-start gap-2">
@@ -151,10 +165,65 @@ export default function AdminDashboard() {
             <StatBadge label="Pending" value={stats.pending} color="text-yellow-400" />
         </div>
 
-        <button onClick={handleLogout} className="flex items-center gap-2 bg-red-500/10 text-red-400 px-4 py-2 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold w-full md:w-auto justify-center">
-          <LogOut className="w-4 h-4" /> Logout
-        </button>
+        <div className="flex gap-2 w-full md:w-auto">
+            {/* Toggle Analytics Button */}
+            <button 
+                onClick={() => setShowAnalytics(!showAnalytics)} 
+                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl transition-all font-bold text-sm ${showAnalytics ? 'bg-lime-500 text-black' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
+            >
+                <PieChart className="w-4 h-4" /> {showAnalytics ? 'Hide Stats' : 'Analytics'}
+            </button>
+            
+            <button onClick={handleLogout} className="flex-1 flex items-center justify-center gap-2 bg-red-500/10 text-red-400 px-4 py-2 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold">
+                <LogOut className="w-4 h-4" /> Logout
+            </button>
+        </div>
       </header>
+
+      {/* --- NEW ANALYTICS SECTION --- */}
+      <AnimatePresence>
+        {showAnalytics && (
+            <motion.div 
+                initial={{ height: 0, opacity: 0 }} 
+                animate={{ height: 'auto', opacity: 1 }} 
+                exit={{ height: 0, opacity: 0 }}
+                className="max-w-7xl mx-auto mb-6 overflow-hidden"
+            >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Branch Distribution */}
+                    <div className="bg-[#0f0f0f] border border-white/10 rounded-3xl p-6">
+                        <h3 className="text-lime-500 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                            <BookOpen className="w-4 h-4"/> Branch Distribution
+                        </h3>
+                        <div className="space-y-3 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                            {Object.entries(distributions.deptCounts).map(([dept, count]) => (
+                                <div key={dept} className="flex justify-between items-center text-sm p-2 rounded-lg hover:bg-white/5 transition-colors">
+                                    <span className="text-gray-300">{dept}</span>
+                                    <span className="bg-white/10 px-2 py-0.5 rounded text-white font-mono font-bold text-xs">{count}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Role Distribution */}
+                    <div className="bg-[#0f0f0f] border border-white/10 rounded-3xl p-6">
+                        <h3 className="text-lime-500 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                            <Target className="w-4 h-4"/> Role Distribution
+                        </h3>
+                        <div className="space-y-3 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                            {Object.entries(distributions.roleCounts).map(([role, count]) => (
+                                <div key={role} className="flex justify-between items-center text-sm p-2 rounded-lg hover:bg-white/5 transition-colors">
+                                    <span className="text-gray-300">{role}</span>
+                                    <span className="bg-white/10 px-2 py-0.5 rounded text-white font-mono font-bold text-xs">{count}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+        )}
+      </AnimatePresence>
+      {/* ----------------------------- */}
 
       {/* FILTERS & SEARCH */}
       <div className="max-w-7xl mx-auto mb-6 grid grid-cols-1 md:grid-cols-4 gap-3">
@@ -325,7 +394,6 @@ export default function AdminDashboard() {
                         <span className="flex items-center gap-1"><Target className="w-3 h-3"/> {selectedCandidate.role}</span>
                     </div>
                 </div>
-                {/* --- ADDED e.stopPropagation() TO CLOSE BUTTON --- */}
                 <button 
                   onClick={(e) => { e.stopPropagation(); setSelectedCandidate(null); }} 
                   className="p-2 bg-white/5 rounded-full hover:bg-white/10 text-gray-400 hover:text-white"
