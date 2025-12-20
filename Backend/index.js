@@ -14,12 +14,11 @@ const app = express();
 app.use(helmet()); 
 app.use(morgan('dev')); 
 app.use(express.json()); 
-
 app.use(cors({
-  
   origin: process.env.FRONTEND_URL || 'http://localhost:5173', 
-  methods: ['POST', 'GET', 'PUT', 'DELETE'], 
-  allowedHeaders: ['Content-Type', 'Authorization'] 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 if (!process.env.MONGO_URI) {
