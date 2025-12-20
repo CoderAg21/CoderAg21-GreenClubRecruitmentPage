@@ -1,6 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import Candidate from '../models/Recruitment.js'; 
+import Candidate from '../models/Candidate.js'; 
 import dotenv from 'dotenv';
 dotenv.config();
 import process from 'process';
