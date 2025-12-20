@@ -82,7 +82,7 @@ export default function AdminDashboard() {
   const toggleStatus = async (e, id, currentStatus) => {
     if(e) e.stopPropagation();
     
-    // Toggle logic: If pending -> reviewed, If reviewed -> pending
+    //Toggle
     const newStatus = currentStatus === 'reviewed' ? 'pending' : 'reviewed';
     const token = localStorage.getItem('adminToken');
     

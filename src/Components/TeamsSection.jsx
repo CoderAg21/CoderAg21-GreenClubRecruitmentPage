@@ -1,15 +1,8 @@
 import React from 'react';
 import { motion, useScroll } from 'framer-motion';
-import { Users, Code, Camera, Palette, Video, Megaphone } from 'lucide-react';
+import { Code, Camera, Megaphone } from 'lucide-react';
 
 const teams = [
-  { 
-    icon: Users, 
-    name: 'Core Team', 
-    tagline: 'The heart and head of the Green Club', 
-    color: 'from-amber-500 to-orange-500',
-    description: 'Lead all initiatives, strategize events, and coordinate teams. Build leadership skills while driving environmental action on campus.'
-  },
   { 
     icon: Code, 
     name: 'Web Team', 
@@ -23,20 +16,6 @@ const teams = [
     tagline: 'Voicing the green message', 
     color: 'from-purple-500 to-pink-500',
     description: 'Manage social media, create engaging content, and handle PR. Turn environmental stories into viral moments.'
-  },
-  { 
-    icon: Palette, 
-    name: 'Design Team', 
-    tagline: 'Creativity meets cause', 
-    color: 'from-rose-500 to-red-500',
-    description: 'Design posters, infographics, and campaign visuals. Transform ideas into stunning graphics that inspire action.'
-  },
-  { 
-    icon: Video, 
-    name: 'Videography Team', 
-    tagline: 'Capturing change', 
-    color: 'from-violet-500 to-purple-500',
-    description: 'Film events, create documentaries, and edit compelling videos. Tell our story through powerful visual narratives.'
   },
   { 
     icon: Megaphone, 

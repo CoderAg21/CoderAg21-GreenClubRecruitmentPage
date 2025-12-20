@@ -1,12 +1,12 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import Candidate from '../models/Candidate.js'; // Ensure this matches your file name!
+import Candidate from '../models/Candidate.js';
 import dotenv from 'dotenv';
 dotenv.config();
 import process from 'process';
 const router = express.Router();
 
-// --- MIDDLEWARE ---
+//  MIDDLEWARE 
 const verifyToken = (req, res, next) => {
   const token = req.headers['authorization'];
   if (!token) return res.status(403).json({ message: 'No token provided.' });
@@ -18,7 +18,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-// --- LOGIN ---
+//  LOGIN 
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
   return res.status(401).json({ auth: false, message: 'Invalid Credentials' });
 });
 
-// --- GET ALL CANDIDATES (For Table) ---
+//  GET ALL CANDIDATES 
 router.get('/candidates', verifyToken, async (req, res) => {
   try {
     // Sort by newest first (-1)
@@ -39,12 +39,12 @@ router.get('/candidates', verifyToken, async (req, res) => {
   }
 });
 
-// --- UPDATE STATUS (Modified to support your Model) ---
+//  UPDATE STATUS  
 router.patch('/candidate/:id/status', verifyToken, async (req, res) => {
   try {
     const { status } = req.body; 
 
-    // 1. Validation: Ensure status is one of the allowed values in your Schema
+   // Ensure status is one of the allowed values in your Schema
     const allowedStatuses = ['pending', 'reviewed', 'accepted', 'rejected'];
     if (!allowedStatuses.includes(status)) {
       return res.status(400).json({ message: `Invalid status. Allowed: ${allowedStatuses.join(', ')}` });
@@ -68,7 +68,7 @@ router.patch('/candidate/:id/status', verifyToken, async (req, res) => {
   }
 });
 
-// --- DELETE CANDIDATE ---
+//  DELETE CANDIDATE 
 router.delete('/candidate/:id', verifyToken, async (req, res) => {
   try {
     await Candidate.findByIdAndDelete(req.params.id);
@@ -78,7 +78,7 @@ router.delete('/candidate/:id', verifyToken, async (req, res) => {
   }
 });
 
-// --- DASHBOARD STATS ---
+//  DASHBOARD STATS 
 router.get('/stats', verifyToken, async (req, res) => {
   try {
     const total = await Candidate.countDocuments();

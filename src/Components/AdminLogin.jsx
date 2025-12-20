@@ -47,7 +47,7 @@ export default function AdminLogin() {
         animate={{ opacity: 1, scale: 1 }}
         className="relative z-10 w-full max-w-md bg-[#0f0f0f] border border-white/10 p-8 rounded-3xl shadow-2xl"
       >
-        {/* --- BACK BUTTON ADDED HERE --- */}
+        {/*  BACK BUTTON ADDED HERE  */}
         <button 
           onClick={() => navigate('/')}
           className="absolute top-6 left-6 p-2 rounded-full text-gray-500 hover:text-white hover:bg-white/5 transition-all"

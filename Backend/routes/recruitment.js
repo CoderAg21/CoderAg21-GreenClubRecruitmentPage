@@ -1,6 +1,6 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
-import Candidate from '../models/Candidate.js'; // Note the .js extension!
+import Candidate from '../models/Candidate.js'; 
 
 const router = express.Router();
 
