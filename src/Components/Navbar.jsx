@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import {  Menu, X } from 'lucide-react';
+// import {  Menu, X } from 'lucide-react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -101,7 +101,7 @@ export default function Navbar() {
             </motion.button>
           </div>
 
-          <button
+          {/* <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-white"
           >
@@ -111,7 +111,7 @@ export default function Navbar() {
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.div>
-          </button>
+          </button> */}
         </div>
       </motion.nav>
 
