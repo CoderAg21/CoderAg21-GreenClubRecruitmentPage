@@ -1,6 +1,9 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import Candidate from '../models/Recruitment.js'; // Ensure path matches your Candidate model
+import Candidate from '../models/Recruitment.js'; 
+import dotenv from 'dotenv';
+dotenv.config();
+import process from 'process';
 
 const router = express.Router();
 
