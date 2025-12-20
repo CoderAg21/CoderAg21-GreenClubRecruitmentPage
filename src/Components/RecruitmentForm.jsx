@@ -33,9 +33,9 @@ export default function RecruitmentForm() {
     mobileNumber: '',
     department: '',
     role: '',
-    question1: '', // Why Join
-    question2: '', // Tech Solution
-    question3: '', // Balance
+    question1: '',
+    question2: '', 
+    question3: '', 
   });
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -47,7 +47,7 @@ export default function RecruitmentForm() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // --- VALIDATION LOGIC ADDED HERE ---
+  //  VALIDATION LOGIC ADDED HERE 
   const validateStep = () => {
     // Step 1: Identity Validation
     if (currentStep === 1) {
@@ -77,7 +77,7 @@ export default function RecruitmentForm() {
       return true;
     }
 
-    // Step 2: Role Validation
+    // Role Validation
     if (currentStep === 2) {
       if (!formData.department) {
         alert("Please select your Department.");
@@ -92,10 +92,9 @@ export default function RecruitmentForm() {
 
     // Step 3: Vision Validation (Questions)
     if (currentStep === 3) {
-      // Ensure answers aren't just empty spaces
+     
       if (!formData.question1.trim() || !formData.question2.trim() || !formData.question3.trim()) {
-         // This check is also handled in the Final Review button click, 
-         // but good to have here if logic changes.
+        
          return false; 
       }
       return true;
@@ -108,19 +107,18 @@ export default function RecruitmentForm() {
     if (validateStep()) {
       setCurrentStep(prev => prev + 1);
     } 
-    // Alert is now handled inside validateStep for specific errors
+   
   };
 
   const handleFinalSubmit = async () => {
     setIsSubmitting(true);
     try {
-      // Simulating API call - Replace with your actual fetch
+     
       const response = await fetch('http://localhost:5000/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      console.log(formData)
       
       if (response.ok) {
         setIsSubmitted(true);
@@ -136,7 +134,7 @@ export default function RecruitmentForm() {
     }
   };
 
-  // --- SUCCESS VIEW ---
+  //  SUCCESS VIEW 
   if (isSubmitted) {
     return (
       <section className="min-h-screen bg-[#050505] flex items-center justify-center relative overflow-hidden">
@@ -160,7 +158,7 @@ export default function RecruitmentForm() {
     );
   }
 
-  // --- MAIN FORM VIEW ---
+  //  MAIN FORM VIEW 
   return (
     <section className="min-h-screen py-20 px-4 md:px-6 bg-[#050505] relative overflow-hidden flex flex-col items-center justify-center font-sans">
       
