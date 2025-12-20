@@ -14,14 +14,13 @@ export default function AdminDashboard() {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Filters
   const [filterDept, setFilterDept] = useState('All');
   const [filterRole, setFilterRole] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   
   const navigate = useNavigate();
 
-  //  FETCH DATA 
+  // --- FETCH DATA ---
   const fetchData = async () => {
     const token = localStorage.getItem('adminToken');
     if (!token) return navigate('/admin/login');
@@ -46,10 +45,15 @@ export default function AdminDashboard() {
       setCandidates(dataCand);
       setStats(dataStats);
       
-      if (selectedCandidate) {
-        const updatedSelected = dataCand.find(c => c._id === selectedCandidate._id);
-        if (updatedSelected) setSelectedCandidate(updatedSelected);
-      }
+      // --- BUG FIX STARTS HERE ---
+      // We use the 'prev' argument to check the REAL-TIME state.
+      // If 'prev' is null (user closed modal), we return null (keep it closed).
+      setSelectedCandidate(prev => {
+        if (!prev) return null; 
+        const updatedSelected = dataCand.find(c => c._id === prev._id);
+        return updatedSelected || prev;
+      });
+      // --- BUG FIX ENDS HERE ---
 
     } catch (err) {
       console.error("Fetch error:", err);
@@ -62,9 +66,9 @@ export default function AdminDashboard() {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, [navigate, selectedCandidate?._id]);
+  }, [navigate]); // Removed selectedCandidate dependency to prevent double-firing
 
-  //  ACTIONS 
+  // --- ACTIONS ---
   const handleDelete = async (e, id) => {
     e.stopPropagation(); 
     if(!window.confirm("Are you sure you want to delete this candidate?")) return;
@@ -75,7 +79,8 @@ export default function AdminDashboard() {
       headers: { 'Authorization': token }
     });
     
-    if (selectedCandidate?._id === id) setSelectedCandidate(null);
+    // Use functional update for safety here too
+    setSelectedCandidate(prev => (prev?._id === id ? null : prev));
     fetchData();
   };
 
@@ -108,7 +113,6 @@ export default function AdminDashboard() {
     navigate('/admin/login');
   };
 
-  //  FILTERING 
   const filteredCandidates = candidates.filter(c => {
     const matchesDept = filterDept === 'All' || c.department === filterDept;
     const matchesRole = filterRole === 'All' || c.role === filterRole;
@@ -117,7 +121,6 @@ export default function AdminDashboard() {
     return matchesDept && matchesRole && matchesSearch;
   });
 
-  // LOADING VIEW
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#050505] flex items-center justify-center relative overflow-hidden">
@@ -189,10 +192,9 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* DATA VIEW (Table on Desktop, Cards on Mobile) */}
+      {/* DATA VIEW */}
       <div className="max-w-7xl mx-auto">
-        
-        {/* DESKTOP TABLE (Hidden on Mobile) */}
+        {/* DESKTOP TABLE */}
         <div className="hidden md:block bg-[#0f0f0f] rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
@@ -214,7 +216,6 @@ export default function AdminDashboard() {
                       onClick={() => setSelectedCandidate(candidate)}
                       className="hover:bg-white/[0.04] transition-colors group cursor-pointer"
                     >
-                      {/* Desktop Row Content */}
                       <td className="p-6">
                           <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border ${
                               candidate.status === 'reviewed' 
@@ -252,7 +253,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* MOBILE CARDS (Hidden on Desktop) */}
+        {/* MOBILE CARDS */}
         <div className="md:hidden space-y-4">
            <AnimatePresence>
              {filteredCandidates.map((candidate) => (
@@ -300,10 +301,9 @@ export default function AdminDashboard() {
              ))}
            </AnimatePresence>
         </div>
-
       </div>
 
-      {/* MODAL (Responsive) */}
+      {/* MODAL */}
       <AnimatePresence>
         {selectedCandidate && (
           <motion.div 
@@ -325,7 +325,11 @@ export default function AdminDashboard() {
                         <span className="flex items-center gap-1"><Target className="w-3 h-3"/> {selectedCandidate.role}</span>
                     </div>
                 </div>
-                <button onClick={() => setSelectedCandidate(null)} className="p-2 bg-white/5 rounded-full hover:bg-white/10 text-gray-400 hover:text-white">
+                {/* --- ADDED e.stopPropagation() TO CLOSE BUTTON --- */}
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setSelectedCandidate(null); }} 
+                  className="p-2 bg-white/5 rounded-full hover:bg-white/10 text-gray-400 hover:text-white"
+                >
                     <X className="w-5 h-5"/>
                 </button>
               </div>
@@ -367,7 +371,7 @@ const StatBadge = ({ label, value, color }) => (
 const DetailBlock = ({ label, value }) => (
     <div>
         <h4 className="text-xs font-bold text-lime-500 uppercase tracking-widest mb-2 md:mb-3">{label}</h4>
-        <div className="bg-white/5 p-4 md:p-5 rounded-2xl border border-white/5 text-gray-300 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
+        <div className="bg-white/5 p-4 md:p-5 rounded-2xl border border-white/5 text-gray-300 leading-relaxed whitespace-pre-wrap break-words max-h-[400px] overflow-y-auto text-sm md:text-base">
             {value}
         </div>
     </div>
