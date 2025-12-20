@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   const [candidates, setCandidates] = useState([]);
   const [stats, setStats] = useState({ total: 0, reviewed: 0, pending: 0 });
   const [selectedCandidate, setSelectedCandidate] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Added loading state
+  const [isLoading, setIsLoading] = useState(true);
   
   // Filters
   const [filterDept, setFilterDept] = useState('All');
@@ -54,13 +54,13 @@ export default function AdminDashboard() {
     } catch (err) {
       console.error("Fetch error:", err);
     } finally {
-      setIsLoading(false); // Stop loading after fetch (success or fail)
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 5000); // Live polling
+    const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
   }, [navigate, selectedCandidate?._id]);
 
@@ -82,7 +82,6 @@ export default function AdminDashboard() {
   const toggleStatus = async (e, id, currentStatus) => {
     if(e) e.stopPropagation();
     
-    //Toggle
     const newStatus = currentStatus === 'reviewed' ? 'pending' : 'reviewed';
     const token = localStorage.getItem('adminToken');
     
@@ -132,30 +131,30 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] p-6 font-sans text-gray-200 relative">
+    <div className="min-h-screen bg-[#050505] p-4 md:p-6 font-sans text-gray-200 relative">
       
       {/* HEADER */}
-      <header className="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#0f0f0f] p-6 rounded-3xl border border-white/5">
-        <div>
+      <header className="max-w-7xl mx-auto mb-6 md:mb-8 flex flex-col md:flex-row justify-between items-center gap-6 bg-[#0f0f0f] p-6 rounded-3xl border border-white/5 shadow-xl">
+        <div className="text-center md:text-left">
           <h1 className="text-2xl font-black text-white tracking-tight">Admin <span className="text-lime-500">Dashboard</span></h1>
-          <p className="text-gray-500 text-xs mt-1 flex items-center gap-2">
+          <p className="text-gray-500 text-xs mt-1 flex items-center justify-center md:justify-start gap-2">
             <span className="w-2 h-2 rounded-full bg-lime-500 animate-pulse"/> Live Data Feed
           </p>
         </div>
         
-        <div className="flex gap-4 text-sm font-bold">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-sm font-bold w-full md:w-auto">
             <StatBadge label="Total" value={stats.total} color="text-white" />
             <StatBadge label="Reviewed" value={stats.reviewed} color="text-lime-400" />
             <StatBadge label="Pending" value={stats.pending} color="text-yellow-400" />
         </div>
 
-        <button onClick={handleLogout} className="flex items-center gap-2 bg-red-500/10 text-red-400 px-4 py-2 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold">
+        <button onClick={handleLogout} className="flex items-center gap-2 bg-red-500/10 text-red-400 px-4 py-2 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold w-full md:w-auto justify-center">
           <LogOut className="w-4 h-4" /> Logout
         </button>
       </header>
 
       {/* FILTERS & SEARCH */}
-      <div className="max-w-7xl mx-auto mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="max-w-7xl mx-auto mb-6 grid grid-cols-1 md:grid-cols-4 gap-3">
         <div className="relative md:col-span-2">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-4 h-4" />
             <input 
@@ -190,91 +189,126 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* TABLE */}
-      <div className="max-w-7xl mx-auto bg-[#0f0f0f] rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-white/5 text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
-                <th className="p-6 font-bold">Status</th>
-                <th className="p-6 font-bold">Candidate</th>
-                <th className="p-6 font-bold">Dept</th>
-                <th className="p-6 font-bold">Role</th>
-                <th className="p-6 font-bold text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              <AnimatePresence>
-                {filteredCandidates.map((candidate) => (
-                  <motion.tr 
-                    key={candidate._id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={() => setSelectedCandidate(candidate)}
-                    className="hover:bg-white/[0.04] transition-colors group cursor-pointer"
-                  >
-                    {/* 1. Status Display Badge */}
-                    <td className="p-6">
-                        <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border ${
-                            candidate.status === 'reviewed' 
-                            ? 'bg-lime-500/10 text-lime-400 border-lime-500/20' 
-                            : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
-                        }`}>
-                            {candidate.status === 'reviewed' ? <CheckCircle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
-                            {candidate.status === 'reviewed' ? 'Reviewed' : 'Pending'}
-                        </span>
-                    </td>
-
-                    <td className="p-6">
-                        <div className="font-bold text-white text-base mb-1">{candidate.fullName}</div>
-                        <div className="text-xs text-gray-500 font-mono">{candidate.registrationNumber}</div>
-                    </td>
-                    <td className="p-6 text-sm text-gray-300">{candidate.department}</td>
-                    <td className="p-6"><span className="px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10">{candidate.role}</span></td>
-                    
-                    {/* 2. Actions Column */}
-                    <td className="p-6">
-                        <div className="flex items-center justify-center gap-2">
-                            
-                            {/* MARK REVIEWED BUTTON */}
-                            <button 
-                                onClick={(e) => toggleStatus(e, candidate._id, candidate.status)} 
-                                className={`p-2 rounded-lg border transition-all ${
-                                    candidate.status === 'reviewed'
-                                    ? 'bg-lime-500 text-black border-lime-500 hover:brightness-110'
-                                    : 'bg-white/5 text-gray-400 border-white/10 hover:text-lime-400 hover:border-lime-400'
-                                }`}
-                                title={candidate.status === 'reviewed' ? "Mark Pending" : "Mark Reviewed"}
-                            >
-                                <Check className="w-4 h-4" />
-                            </button>
-
-                            {/* WhatsApp Button */}
-                            <button onClick={(e) => openWhatsApp(e, candidate.mobileNumber)} className="p-2 bg-green-600/10 text-green-500 rounded-lg hover:bg-green-600/20 border border-green-600/20 transition-colors">
-                                <MessageCircle className="w-4 h-4" />
-                            </button>
-                            
-                            {/* Delete Button */}
-                            <button onClick={(e) => handleDelete(e, candidate._id)} className="p-2 bg-red-600/10 text-red-500 rounded-lg hover:bg-red-600/20 border border-red-600/20 transition-colors">
-                                <Trash2 className="w-4 h-4" />
-                            </button>
-                        </div>
-                    </td>
-                  </motion.tr>
-                ))}
-              </AnimatePresence>
-            </tbody>
-          </table>
+      {/* DATA VIEW (Table on Desktop, Cards on Mobile) */}
+      <div className="max-w-7xl mx-auto">
+        
+        {/* DESKTOP TABLE (Hidden on Mobile) */}
+        <div className="hidden md:block bg-[#0f0f0f] rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-white/5 text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
+                  <th className="p-6 font-bold">Status</th>
+                  <th className="p-6 font-bold">Candidate</th>
+                  <th className="p-6 font-bold">Dept</th>
+                  <th className="p-6 font-bold">Role</th>
+                  <th className="p-6 font-bold text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                <AnimatePresence>
+                  {filteredCandidates.map((candidate) => (
+                    <motion.tr 
+                      key={candidate._id}
+                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                      onClick={() => setSelectedCandidate(candidate)}
+                      className="hover:bg-white/[0.04] transition-colors group cursor-pointer"
+                    >
+                      {/* Desktop Row Content */}
+                      <td className="p-6">
+                          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border ${
+                              candidate.status === 'reviewed' 
+                              ? 'bg-lime-500/10 text-lime-400 border-lime-500/20' 
+                              : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
+                          }`}>
+                              {candidate.status === 'reviewed' ? <CheckCircle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
+                              {candidate.status === 'reviewed' ? 'Reviewed' : 'Pending'}
+                          </span>
+                      </td>
+                      <td className="p-6">
+                          <div className="font-bold text-white text-base mb-1">{candidate.fullName}</div>
+                          <div className="text-xs text-gray-500 font-mono">{candidate.registrationNumber}</div>
+                      </td>
+                      <td className="p-6 text-sm text-gray-300">{candidate.department}</td>
+                      <td className="p-6"><span className="px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10">{candidate.role}</span></td>
+                      <td className="p-6">
+                          <div className="flex items-center justify-center gap-2">
+                              <button onClick={(e) => toggleStatus(e, candidate._id, candidate.status)} className={`p-2 rounded-lg border transition-all ${candidate.status === 'reviewed' ? 'bg-lime-500 text-black border-lime-500' : 'bg-white/5 text-gray-400 border-white/10 hover:text-lime-400'}`}>
+                                  <Check className="w-4 h-4" />
+                              </button>
+                              <button onClick={(e) => openWhatsApp(e, candidate.mobileNumber)} className="p-2 bg-green-600/10 text-green-500 rounded-lg hover:bg-green-600/20 border border-green-600/20">
+                                  <MessageCircle className="w-4 h-4" />
+                              </button>
+                              <button onClick={(e) => handleDelete(e, candidate._id)} className="p-2 bg-red-600/10 text-red-500 rounded-lg hover:bg-red-600/20 border border-red-600/20">
+                                  <Trash2 className="w-4 h-4" />
+                              </button>
+                          </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </AnimatePresence>
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        {/* MOBILE CARDS (Hidden on Desktop) */}
+        <div className="md:hidden space-y-4">
+           <AnimatePresence>
+             {filteredCandidates.map((candidate) => (
+               <motion.div
+                 key={candidate._id}
+                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                 onClick={() => setSelectedCandidate(candidate)}
+                 className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-5 shadow-lg active:scale-[0.99] transition-transform"
+               >
+                  <div className="flex justify-between items-start mb-4">
+                     <div>
+                        <h3 className="font-bold text-white text-lg">{candidate.fullName}</h3>
+                        <p className="text-gray-500 text-xs font-mono">{candidate.registrationNumber}</p>
+                     </div>
+                     <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border ${
+                        candidate.status === 'reviewed' 
+                        ? 'bg-lime-500/10 text-lime-400 border-lime-500/20' 
+                        : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
+                     }`}>
+                        {candidate.status}
+                     </span>
+                  </div>
+                  
+                  <div className="space-y-2 mb-5">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <BookOpen className="w-3 h-3" /> {candidate.department}
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <Target className="w-3 h-3" /> {candidate.role}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2 border-t border-white/5 pt-4">
+                      <button onClick={(e) => toggleStatus(e, candidate._id, candidate.status)} className="flex-1 py-2 bg-white/5 rounded-lg border border-white/10 text-gray-300 hover:bg-white/10 flex items-center justify-center">
+                          <Check className="w-4 h-4" />
+                      </button>
+                      <button onClick={(e) => openWhatsApp(e, candidate.mobileNumber)} className="flex-1 py-2 bg-green-500/10 rounded-lg border border-green-500/20 text-green-500 hover:bg-green-500/20 flex items-center justify-center">
+                          <MessageCircle className="w-4 h-4" />
+                      </button>
+                      <button onClick={(e) => handleDelete(e, candidate._id)} className="flex-1 py-2 bg-red-500/10 rounded-lg border border-red-500/20 text-red-500 hover:bg-red-500/20 flex items-center justify-center">
+                          <Trash2 className="w-4 h-4" />
+                      </button>
+                  </div>
+               </motion.div>
+             ))}
+           </AnimatePresence>
+        </div>
+
       </div>
 
-      {/* MODAL  */}
+      {/* MODAL (Responsive) */}
       <AnimatePresence>
         {selectedCandidate && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
             onClick={() => setSelectedCandidate(null)}
           >
             <motion.div 
@@ -282,10 +316,10 @@ export default function AdminDashboard() {
               onClick={(e) => e.stopPropagation()}
               className="bg-[#0f0f0f] w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 shadow-2xl relative"
             >
-              <div className="p-6 border-b border-white/10 flex justify-between items-start sticky top-0 bg-[#0f0f0f]/95 backdrop-blur-md z-10">
+              <div className="p-4 md:p-6 border-b border-white/10 flex justify-between items-start sticky top-0 bg-[#0f0f0f]/95 backdrop-blur-md z-10">
                 <div>
-                    <h2 className="text-2xl font-black text-white">{selectedCandidate.fullName}</h2>
-                    <div className="flex gap-3 text-sm text-gray-400 mt-2">
+                    <h2 className="text-xl md:text-2xl font-black text-white">{selectedCandidate.fullName}</h2>
+                    <div className="flex flex-wrap gap-2 md:gap-3 text-xs md:text-sm text-gray-400 mt-2">
                         <span className="flex items-center gap-1"><User className="w-3 h-3"/> {selectedCandidate.registrationNumber}</span>
                         <span className="flex items-center gap-1"><BookOpen className="w-3 h-3"/> {selectedCandidate.department}</span>
                         <span className="flex items-center gap-1"><Target className="w-3 h-3"/> {selectedCandidate.role}</span>
@@ -296,14 +330,14 @@ export default function AdminDashboard() {
                 </button>
               </div>
 
-              <div className="p-8 space-y-8">
+              <div className="p-4 md:p-8 space-y-6 md:space-y-8">
                 <DetailBlock label="Why Join Green Club?" value={selectedCandidate.question1} />
                 <DetailBlock label="Tech Solution Idea" value={selectedCandidate.question2} />
                 <DetailBlock label="Industry vs Nature Balance" value={selectedCandidate.question3} />
-                <div className="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-white/5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 pt-8 border-t border-white/5">
                     <div className="bg-white/5 p-4 rounded-xl">
                         <span className="text-xs font-bold text-gray-500 uppercase">Email</span>
-                        <div className="text-white mt-1">{selectedCandidate.collegeEmail}</div>
+                        <div className="text-white mt-1 break-all">{selectedCandidate.collegeEmail}</div>
                     </div>
                     <div className="bg-white/5 p-4 rounded-xl">
                         <span className="text-xs font-bold text-gray-500 uppercase">Mobile</span>
@@ -324,16 +358,16 @@ export default function AdminDashboard() {
 }
 
 const StatBadge = ({ label, value, color }) => (
-    <div className="flex flex-col items-center bg-white/5 px-4 py-2 rounded-xl border border-white/5 min-w-[80px]">
-        <span className={`text-xl font-black ${color}`}>{value}</span>
-        <span className="text-[10px] text-gray-500 uppercase tracking-wider">{label}</span>
+    <div className="flex flex-col items-center justify-center bg-white/5 px-4 py-2 rounded-xl border border-white/5 min-w-[30%] md:min-w-[80px]">
+        <span className={`text-lg md:text-xl font-black ${color}`}>{value}</span>
+        <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider">{label}</span>
     </div>
 );
 
 const DetailBlock = ({ label, value }) => (
     <div>
-        <h4 className="text-xs font-bold text-lime-500 uppercase tracking-widest mb-3">{label}</h4>
-        <div className="bg-white/5 p-5 rounded-2xl border border-white/5 text-gray-300 leading-relaxed whitespace-pre-wrap">
+        <h4 className="text-xs font-bold text-lime-500 uppercase tracking-widest mb-2 md:mb-3">{label}</h4>
+        <div className="bg-white/5 p-4 md:p-5 rounded-2xl border border-white/5 text-gray-300 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
             {value}
         </div>
     </div>
