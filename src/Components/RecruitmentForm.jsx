@@ -124,11 +124,10 @@ export default function RecruitmentForm() {
           <div>
             <motion.h2 
               initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-              className="text-4xl md:text-5xl font-black text-white tracking-tighter"
+              className="text-4xl md:text-5xl font-black text-white tracking-tighter text-center"
             >
               CANDIDATE <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 to-emerald-400">REGISTRATION</span>
             </motion.h2>
-            <p className="text-gray-500 mt-2 font-medium tracking-wide">SECURE GATEWAY v2.0 // STEP {currentStep}/3</p>
           </div>
           
           {/* Stylized Progress Steps */}
