@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { Lock, ArrowRight, AlertCircle, ArrowLeft } from 'lucide-react'; // Added ArrowLeft
 
 export default function AdminLogin() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -47,6 +47,15 @@ export default function AdminLogin() {
         animate={{ opacity: 1, scale: 1 }}
         className="relative z-10 w-full max-w-md bg-[#0f0f0f] border border-white/10 p-8 rounded-3xl shadow-2xl"
       >
+        {/* --- BACK BUTTON ADDED HERE --- */}
+        <button 
+          onClick={() => navigate('/')}
+          className="absolute top-6 left-6 p-2 rounded-full text-gray-500 hover:text-white hover:bg-white/5 transition-all"
+          title="Back to Home"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+
         <div className="flex justify-center mb-6">
           <div className="p-4 bg-lime-500/10 rounded-full border border-lime-500/20">
             <Lock className="w-8 h-8 text-lime-400" />
