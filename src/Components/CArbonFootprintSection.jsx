@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { TreePine, Droplets, Wind, Leaf } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 const stats = [
   { 
@@ -225,3 +226,8 @@ export default function CarbonFootprintSection() {
     </section>
   );
 }
+
+CountUpAnimation.propTypes = {
+  suffix: PropTypes.string.isRequired,
+  value: PropTypes.string,
+};

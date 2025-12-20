@@ -5,6 +5,7 @@ import TeamsSection from "../Components/TeamsSection";
 import RecruitmentForm from "../Components/RecruitmentForm";
 import Footer from "../Components/Footer";
 import BenefitsSection from "../Components/BenefitsSection";
+import CarbonFootprintSection from "../Components/CArbonFootprintSection";
 export default function Recruitment() {
   const scrollToForm = () => {
     const formElement = document.getElementById("form");
@@ -19,6 +20,9 @@ export default function Recruitment() {
       <HeroSection onScrollToForm={scrollToForm} />
       <div id="about">
         <ActivitiesSection />
+      </div>
+      <div id="impact">
+        <CarbonFootprintSection />
       </div>
       <div id="benefits">
         <BenefitsSection />

@@ -1,5 +1,5 @@
+import  { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 import { Zap, Palette, TrendingUp, Briefcase } from 'lucide-react';
 
 const benefits = [
@@ -35,7 +35,7 @@ export default function BenefitsSection() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   return (
-    <section ref={ref} className="py-40 bg-gradient-to-b from-black via-[#0A1F0D] to-black relative overflow-hidden">
+    <section ref={ref} className="py-20 md:py-40 bg-gradient-to-b from-black via-[#0A1F0D] to-black relative overflow-hidden">
       <motion.div
         className="absolute inset-0 opacity-20"
         style={{ y }}
@@ -46,21 +46,21 @@ export default function BenefitsSection() {
         }} />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-20 items-center">
           {/* Image side */}
           <motion.div
             initial={{ opacity: 0, x: -100, rotateY: -30 }}
             whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, type: 'spring' }}
-            className="relative"
+            className="relative order-2 lg:order-1"
           >
-            <div className="relative rounded-3xl overflow-hidden">
+            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden">
               <motion.img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80"
                 alt="Team"
-                className="w-full h-[600px] object-cover"
+                className="w-full h-64 md:h-96 lg:h-[500px] object-cover"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.8 }}
               />
@@ -74,10 +74,11 @@ export default function BenefitsSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
               animate={{ y: [0, -15, 0] }}
-              className="absolute -bottom-10 -right-10 bg-gradient-to-br from-lime-400 to-emerald-500 p-8 rounded-3xl shadow-2xl shadow-lime-500/50"
+              // transition={{ y: { duration: 3, repeat: Infinity } }}
+              className="absolute -bottom-6 -right-4 md:-bottom-10 md:-right-10 bg-gradient-to-br from-lime-400 to-emerald-500 p-4 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl shadow-lime-500/50"
             >
-              <div className="text-5xl font-black text-black">100+</div>
-              <div className="text-black/80 font-bold">Active Members</div>
+              <div className="text-3xl md:text-5xl font-black text-black">100+</div>
+              <div className="text-xs md:text-base text-black/80 font-bold">Active Members</div>
             </motion.div>
           </motion.div>
 
@@ -87,24 +88,25 @@ export default function BenefitsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, type: 'spring' }}
+            className="order-1 lg:order-2"
           >
             <motion.h2 
-              className="text-5xl md:text-6xl font-black text-white mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6"
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ type: 'spring', bounce: 0.5 }}
             >
-               Why Join{' '}
+              Why Join{' '}
               <span className="text-lime-400">Green Club</span>?
             </motion.h2>
-            <p className="text-gray-400 text-xl mb-12">
-              It&apos;s about{' '}
+            <p className="text-gray-400 text-base md:text-xl mb-8 md:mb-12">
+              It is about{' '}
               <span className="text-lime-400 font-bold">growing yourself</span> while{' '}
               <span className="text-emerald-400 font-bold">growing green!</span>
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {benefits.map((benefit, index) => (
                 <motion.div
                   key={benefit.title}
@@ -113,24 +115,24 @@ export default function BenefitsSection() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.6, type: 'spring' }}
                   whileHover={{ 
-                    x: 15, 
+                    x: 10, 
                     scale: 1.02,
                     transition: { duration: 0.3 }
                   }}
-                  className="flex items-start gap-5 p-6 rounded-2xl bg-gradient-to-r from-white/10 to-white/5 border border-white/10 hover:border-lime-500/30 transition-all group backdrop-blur-xl"
+                  className="flex items-start gap-3 md:gap-5 p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-r from-white/10 to-white/5 border border-white/10 hover:border-lime-500/30 transition-all group backdrop-blur-xl"
                 >
                   <motion.div 
-                    className="p-4 rounded-xl bg-gradient-to-br from-lime-400 to-emerald-500"
+                    className="p-3 md:p-4 rounded-lg md:rounded-xl bg-gradient-to-br from-lime-400 to-emerald-500 flex-shrink-0"
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.2 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <benefit.icon className="w-7 h-7 text-black" />
+                    <benefit.icon className="w-5 h-5 md:w-7 md:h-7 text-black" />
                   </motion.div>
                   <div>
-                    <h3 className="text-xl font-black text-white group-hover:text-lime-400 transition-colors mb-2">
+                    <h3 className="text-lg md:text-xl font-black text-white group-hover:text-lime-400 transition-colors mb-1 md:mb-2">
                       {benefit.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
+                    <p className="text-xs md:text-base text-gray-400 leading-relaxed">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
