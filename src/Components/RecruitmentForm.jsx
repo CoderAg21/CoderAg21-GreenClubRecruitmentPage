@@ -47,17 +47,68 @@ export default function RecruitmentForm() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // --- VALIDATION LOGIC ADDED HERE ---
   const validateStep = () => {
-    if (currentStep === 1) return formData.fullName && formData.collegeEmail && formData.registrationNumber && formData.mobileNumber;
-    if (currentStep === 2) return formData.department && formData.role;
+    // Step 1: Identity Validation
+    if (currentStep === 1) {
+      if (!formData.fullName.trim()) {
+        alert("Please enter your Full Name.");
+        return false;
+      }
+      if (!formData.registrationNumber.trim()) {
+        alert("Please enter your Registration Number.");
+        return false;
+      }
+      
+      // Email Regex Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.collegeEmail)) {
+        alert("Please enter a valid Email Address (e.g., user@college.edu).");
+        return false;
+      }
+
+      // Mobile Regex Validation (Simple 10-digit check)
+      const mobileRegex = /^[0-9]{10}$/;
+      if (!mobileRegex.test(formData.mobileNumber)) {
+        alert("Please enter a valid 10-digit Mobile Number.");
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Step 2: Role Validation
+    if (currentStep === 2) {
+      if (!formData.department) {
+        alert("Please select your Department.");
+        return false;
+      }
+      if (!formData.role) {
+        alert("Please select a Target Team.");
+        return false;
+      }
+      return true;
+    }
+
+    // Step 3: Vision Validation (Questions)
+    if (currentStep === 3) {
+      // Ensure answers aren't just empty spaces
+      if (!formData.question1.trim() || !formData.question2.trim() || !formData.question3.trim()) {
+         // This check is also handled in the Final Review button click, 
+         // but good to have here if logic changes.
+         return false; 
+      }
+      return true;
+    }
+
     return true;
   };
 
   const handleNext = () => {
-    if (validateStep()) setCurrentStep(prev => prev + 1);
-    else {
-      alert("Please complete all fields to proceed.");
-    }
+    if (validateStep()) {
+      setCurrentStep(prev => prev + 1);
+    } 
+    // Alert is now handled inside validateStep for specific errors
   };
 
   const handleFinalSubmit = async () => {
@@ -71,13 +122,15 @@ export default function RecruitmentForm() {
       });
       console.log(formData)
       
-      // For demo purposes, assuming success
-      setTimeout(() => setIsSubmitted(true), 1500); 
-
-      if (response.ok) setIsSubmitted(true);
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        alert(`Submission Failed: ${errorData.message || 'Unknown error'}`);
+      }
     } catch (error) {
       console.error(error);
-      setTimeout(() => setIsSubmitted(true), 1500);
+      alert("Network Error: Could not connect to server.");
     } finally {
       setIsSubmitting(false);
     }
@@ -297,7 +350,7 @@ export default function RecruitmentForm() {
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(132,204,22,0.4)" }} 
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
-                  if(formData.question1 && formData.question2 && formData.question3) setIsReviewOpen(true);
+                  if(formData.question1.trim() && formData.question2.trim() && formData.question3.trim()) setIsReviewOpen(true);
                   else alert("Please answer all questions.");
                 }}
                 className="bg-gradient-to-r from-lime-400 to-emerald-500 text-black px-10 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-lime-500/20"
@@ -309,7 +362,7 @@ export default function RecruitmentForm() {
         </motion.div>
       </div>
 
-      {/*  REVIEW MODAL  */}
+      {/* REVIEW MODAL  */}
       <AnimatePresence>
         {isReviewOpen && (
           <motion.div 
@@ -351,7 +404,6 @@ export default function RecruitmentForm() {
                     <h4 className="text-xs font-bold text-lime-500 uppercase tracking-widest">Vision</h4>
                     <ReviewItem label="Why Join?" value={formData.question1} />
                     <ReviewItem label="Tech Idea" value={formData.question2} />
-                    {/* ADDED MISSING QUESTION HERE */}
                     <ReviewItem label="Balance" value={formData.question3} />
                   </div>
                 </div>
