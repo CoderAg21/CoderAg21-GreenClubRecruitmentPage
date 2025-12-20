@@ -178,10 +178,10 @@ export default function RecruitmentForm() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                  <InputGroup label="Full Name" value={formData.fullName} onChange={v => handleChange('fullName', v)} placeholder="Ex: Alex Carter" icon={<User className="w-4 h-4" />} />
-                  <InputGroup label="Registration ID" value={formData.registrationNumber} onChange={v => handleChange('registrationNumber', v)} placeholder="Ex: 2023BCSE001" icon={<GraduationCap className="w-4 h-4" />} />
-                  <InputGroup label="College Email" value={formData.collegeEmail} onChange={v => handleChange('collegeEmail', v)} type="email" placeholder="alex@university.edu" icon={<Send className="w-4 h-4" />} />
-                  <InputGroup label="Mobile Contact" value={formData.mobileNumber} onChange={v => handleChange('mobileNumber', v)} type="tel" placeholder="+91 98765 43210" icon={<User className="w-4 h-4" />} />
+                  <InputGroup label="Full Name" value={formData.fullName} onChange={v => handleChange('fullName', v)} placeholder="Ex: Alex Carter" icon={<User className="w-4 h-4" />}isRequired />
+                  <InputGroup label="Registration ID" value={formData.registrationNumber} onChange={v => handleChange('registrationNumber', v)} placeholder="Ex: 2023BCSE001" icon={<GraduationCap className="w-4 h-4" />} isRequired/>
+                  <InputGroup label="College Email" value={formData.collegeEmail} onChange={v => handleChange('collegeEmail', v)} type="email" placeholder="alex@university.edu" icon={<Send className="w-4 h-4" />} isRequired/>
+                  <InputGroup label="Mobile Contact" value={formData.mobileNumber} onChange={v => handleChange('mobileNumber', v)} type="tel" placeholder="+91 98765 43210" icon={<User className="w-4 h-4" />}isRequired />
                 </div>
               </motion.div>
             )}
@@ -363,7 +363,7 @@ export default function RecruitmentForm() {
                   disabled={isSubmitting}
                   className="w-full py-4 rounded-xl bg-gradient-to-r from-lime-500 to-emerald-600 text-black font-black text-lg hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : <>LAUNCH APPLICATION <Send className="w-5 h-5" /></>}
+                  {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : <>FINAL SUBMIT <Send className="w-5 h-5" /></>}
                 </button>
               </div>
             </motion.div>

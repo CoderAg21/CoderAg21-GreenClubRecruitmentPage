@@ -7,7 +7,7 @@ import morgan from 'morgan';
 // FIX: Explicitly import process for ES Module compatibility
 import process from 'process'; 
 
-import recruitmentRoute from './routes/recruitment.js'; 
+import recruitmentRoute from './routes/recruitment.js'
 
 // Load environment variables immediately
 dotenv.config();
@@ -38,7 +38,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error(' MongoDB Connection Error:', err));
 
 //  ROUTES 
-app.use('/api/register', recruitmentRoute);
+app.use('/api', recruitmentRoute);
 
 //  START SERVER 
 const PORT = process.env.PORT || 5000;

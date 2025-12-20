@@ -20,6 +20,7 @@ const validateApplication = [
 // POST /api/register
 router.post('/register', validateApplication, async (req, res) => {
   const errors = validationResult(req);
+  console.log('Received Application:', req.body);
   if (!errors.isEmpty()) {
     return res.status(400).json({ success: false, errors: errors.array() });
   }
@@ -29,7 +30,6 @@ router.post('/register', validateApplication, async (req, res) => {
       fullName, registrationNumber, collegeEmail, mobileNumber, 
       department, role, question1, question2, question3 
     } = req.body;
-
     // Check duplicate
     const existingCandidate = await Candidate.findOne({ 
       $or: [{ registrationNumber }, { collegeEmail }] 
