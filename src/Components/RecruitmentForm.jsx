@@ -69,6 +69,7 @@ export default function RecruitmentForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      console.log(formData)
       
       // For demo purposes, assuming success
       setTimeout(() => setIsSubmitted(true), 1500); 
